@@ -5,12 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.avrios.sample</groupId>
+    <groupId>com.ecb-exchange.sample</groupId>
     <artifactId>exchange</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Avrios Foreign Exchange Rate Service</name>
+    <name>Foreign Exchange Rate Service</name>
     <description>Sample project for backend developers</description>
 
     <parent>
@@ -25,6 +25,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
 
+
     <dependencies>
 
         <dependency>
@@ -38,13 +39,20 @@
             <scope>test</scope>
         </dependency>
 
-    </dependencies>
+   </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+						<version>1.2.2.BUILD-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
             </plugin>
 
             <plugin>
