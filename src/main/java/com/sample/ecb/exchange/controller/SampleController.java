@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sample.ecb.exchange.Currency;
+import com.sample.ecb.exchange.XMLTest;
 
 @Controller
 public class SampleController {
@@ -29,6 +30,9 @@ public class SampleController {
     @ResponseBody
     @RequestMapping("/{name}")
     public Currency greeting(@PathVariable( "name" ) String name ) {
+    	
+    	XMLTest test = new XMLTest();
+
 //        System.out.println(name);
     	currencies.put("eur",new Currency("EUR", 10.8));
     	currencies.put("chf",new Currency("CHF", 9.9));
