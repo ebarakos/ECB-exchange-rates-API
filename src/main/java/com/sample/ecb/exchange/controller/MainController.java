@@ -1,7 +1,6 @@
 package com.sample.ecb.exchange.controller;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +26,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-//import com.sample.ecb.exchange.XMLParser;
 import com.sample.ecb.exchange.Output;
 
 @Controller
-public class SampleController {
+public class MainController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -63,16 +61,10 @@ public class SampleController {
 					}
 				}
 			}
-		} catch (MalformedURLException e) {
-			log.debug(e.getMessage());;
-		} catch (SAXException e) {
-			log.debug(e.getMessage());;
-		} catch (IOException e) {
-			log.debug(e.getMessage());;
-		} catch (ParserConfigurationException e) {
-			log.debug(e.getMessage());;
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			log.debug(e.getMessage());
 		}
-	}
+	} 
 
 	@Async
 	@Scheduled(fixedDelay=10000)
@@ -95,9 +87,8 @@ public class SampleController {
 
 	@ResponseBody
 	@RequestMapping("/currency/{currency}")
-	public List<Output> getResultForCurrencyOnly(@PathVariable( "currency" ) String currency ) {
+	public List<Output> getResultForCurrency(@PathVariable( "currency" ) String currency ) {
 		List<Output> output = new ArrayList<Output>();
-
 		for (String date: parsedData.keySet()) {
 			String value = parsedData.get(date).get(currency);
 			if (value != null){
@@ -109,7 +100,7 @@ public class SampleController {
 
 	@ResponseBody
 	@RequestMapping("/date/{date}")
-	public List<Output> getResultForDateOnly(@PathVariable( "date" ) String date ) {
+	public List<Output> getResultForDate(@PathVariable( "date" ) String date ) {
 		List<Output> output = new ArrayList<Output>();
 		Map<String, String> parsedDataForDate= parsedData.get(date);
 		for (String currency: parsedDataForDate.keySet()) {
